@@ -7,9 +7,7 @@ url = ARGV.shift or fail("USAGE: #{$0} URL")
 curl = Curl::Easy.new url
 
 curl.on_progress do |_, _, total, uploaded|
-  next true if total == 0
-  percent =  uploaded / total * 100
-  print "\r#{percent.round}%\t(#{uploaded}/#{total})"
+  print "\r#{uploaded}/#{total}"
   true
 end
 
